@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 
-def save_to_excel(record):
+def save_to_excel(record, path):
     df_new = pd.DataFrame([record])
 
     # dodawanie nowego rekordu do istniejącego pliku
@@ -11,8 +11,8 @@ def save_to_excel(record):
     # a następnie dodaj nowe dane (pd.concat)
     # a jeśli plik nie istnieje, zamień df_new na df i zapisz plik (df.to_excel)
 
-    if os.path.exists("weather.xlsx"):
-        df = pd.read_excel("weather.xlsx")
+    if os.path.exists(path):
+        df = pd.read_excel(path)
         df = pd.concat(
         [df, df_new],
             ignore_index=False
@@ -20,4 +20,4 @@ def save_to_excel(record):
     else:
         df = df_new
 
-    df.to_excel("weather.xlsx", index=False)
+    df.to_excel(path, index=False)
